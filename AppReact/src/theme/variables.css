@@ -1,0 +1,151 @@
+
+/* Ionic Variables and Theming. For more info, please see:
+http://ionicframework.com/docs/theming/ */
+
+/** Ionic CSS Variables **/
+:root {
+  /** primary (Azul brillante) **/
+  --ion-color-primary: #00ABE4;
+  --ion-color-primary-rgb: 0, 171, 228;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0098cc;
+  --ion-color-primary-tint: #1ab6e6;
+
+  /** secondary (Azul claro) **/
+  --ion-color-secondary: #E9F1FA;
+  --ion-color-secondary-rgb: 233, 241, 250;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #cdd3dd;
+  --ion-color-secondary-tint: #eaf3fd;
+
+  /** tertiary (Gris claro) **/
+  --ion-color-tertiary: #d3d3d3;
+  --ion-color-tertiary-rgb: 211, 211, 211;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #bbbbbb;
+  --ion-color-tertiary-tint: #dadada;
+
+  /** success **/
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  /** warning **/
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  /** danger **/
+  --ion-color-danger: #eb445a;
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  /** dark **/
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  /** medium **/
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff; /* Considerar #000000 si el gris es muy claro */
+  --ion-color-medium-contrast-rgb: 255, 255, 255; /* Ajustar si cambia el contraste */
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  /** light (Blanco) **/
+  --ion-color-light: #FFFFFF;
+  --ion-color-light-rgb: 255, 255, 255;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #e0e0e0;
+  --ion-color-light-tint: #ffffff;
+
+
+  /* === Variables Globales de App (Opcional pero Recomendado) === */
+  /* Define tamaños base para padding y fuentes. */
+  /* Úsalas en tus componentes y ajústalos en media queries si es necesario */
+  /* (ya sea aquí o en los CSS específicos como page.css) */
+
+  /* Padding */
+  --app-padding-small: 10px;
+  --app-padding-medium: 15px;
+  --app-padding-large: 20px;
+
+  /* Font Sizes (Basado en 1rem = 16px) */
+  --app-fontsize-small: 0.875rem;  /* 14px */
+  --app-fontsize-base: 1rem;     /* 16px */
+  --app-fontsize-medium: 1.125rem; /* 18px */
+  --app-fontsize-large: 1.25rem;  /* 20px */
+  --app-fontsize-xl: 1.375rem; /* 22px */
+}
+
+/* === Estilos de Tabla (Globales - CORREGIDO) === */
+/* Si la tabla es específica de un componente, mueve esto a su CSS */
+.table ion-row {
+  /* El padding y font-size se ajustan responsivamente en page.css */
+  /* Se deja un valor base aquí por si se usa fuera de page.css */
+  padding: 10px 5px;
+  font-size: var(--app-fontsize-base, 1rem); /* Usa variable de fuente */
+}
+
+.table ion-row:nth-child(even) {
+  background: var(--ion-color-secondary); /* CORREGIDO: Usa variable */
+}
+
+.table ion-row:nth-child(odd) {
+  background: var(--ion-color-light); /* CORREGIDO: Usa variable */
+}
+
+.table ion-row:first-child {
+  font-weight: bold;
+  text-transform: uppercase;
+  background: var(--ion-color-primary); /* CORREGIDO: Usa variable */
+  color: var(--ion-color-primary-contrast); /* CORREGIDO: Usa variable */
+}
+
+/* === Ejemplo de Botón (Sin cambios) === */
+ion-button.primary {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --background-focused: var(--ion-color-primary-tint);
+  --color: var(--ion-color-primary-contrast);
+}
+
+/* === Media Queries para Variables Globales (Opcional) === */
+/* Aquí podrías cambiar los valores de --app-padding-* o --app-fontsize-* */
+/* globalmente para diferentes tamaños de pantalla si lo prefieres, */
+/* en lugar de hacerlo en cada archivo CSS específico. */
+
+@media (min-width: 601px) {
+  :root {
+    --app-padding-small: 12px;
+    --app-padding-medium: 18px;
+    --app-padding-large: 24px;
+    --app-fontsize-base: 1.05rem;
+  }
+}
+
+@media (min-width: 992px) {
+ :root {
+    --app-padding-small: 15px;
+    --app-padding-medium: 20px;
+    --app-padding-large: 25px;
+    --app-fontsize-base: 1.1rem;
+ }
+}

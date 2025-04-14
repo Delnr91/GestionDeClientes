@@ -1,0 +1,86 @@
+#container {
+  text-align: center;
+  position: relative; /* Mantenemos este método de centrado */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Nota: Este centrado depende del contexto del elemento padre. */
+  /* Si no funciona bien en todas las pantallas, considera usar */
+  /* Flexbox en el padre o la estructura de Ionic Grid.       */
+  padding: 10px; /* Agregamos un padding base pequeño */
+}
+
+#container strong {
+  /* Usando variable --app-fontsize-medium (18px) definida en variables.css */
+  font-size: var(--app-fontsize-medium, 1.125rem);
+  color: var(--ion-color-primary); /* Usa variable */
+  display: block; /* Asegura que ocupe su propia línea si es necesario */
+  margin-bottom: 5px; /* Espacio debajo del strong */
+}
+
+#container p {
+  /* Usando variable --app-fontsize-small (14px) definida en variables.css */
+  font-size: var(--app-fontsize-small, 0.875rem);
+  color: #333333; /* Gris oscuro */
+  margin: 0 0 10px 0; /* Margen inferior para separar del enlace */
+  line-height: 1.4; /* Mejora legibilidad en móviles */
+}
+
+#container a {
+  text-decoration: none;
+  color: var(--ion-color-primary); /* Usa variable */
+  /* Usando variable --app-fontsize-small (14px) como tamaño base para el enlace */
+  font-size: var(--app-fontsize-small, 0.875rem);
+}
+
+#container a:hover {
+  color: var(--ion-color-primary-shade); /* Usa variable */
+}
+
+
+/* === Estilos para Tablets (>= 601px) === */
+@media (min-width: 601px) {
+  #container {
+    padding: 15px; /* Un poco más de padding */
+  }
+
+  #container strong {
+    /* Ligeramente más grande que móvil (~19px) */
+    font-size: calc(var(--app-fontsize-medium, 1.125rem) + 0.0625rem);
+    margin-bottom: 8px;
+  }
+
+  #container p {
+    /* Ligeramente más grande que móvil (~15px) */
+    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
+    margin-bottom: 12px;
+  }
+
+   #container a {
+    /* Ligeramente más grande que móvil (~15px) */
+    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
+  }
+}
+
+/* === Estilos para Escritorio (>= 992px) === */
+@media (min-width: 992px) {
+   #container {
+    padding: 20px; /* Padding original de page.css */
+  }
+
+  #container strong {
+    /* Usando variable --app-fontsize-large (20px) definida en variables.css */
+    font-size: var(--app-fontsize-large, 1.25rem); /* Tamaño original de page.css */
+    margin-bottom: 10px;
+  }
+
+  #container p {
+     /* Usando variable --app-fontsize-base (16px) definida en variables.css */
+    font-size: var(--app-fontsize-base, 1rem); /* Tamaño original de page.css */
+    margin-bottom: 15px;
+  }
+
+  #container a {
+    /* Usando variable --app-fontsize-base (16px) para el enlace en escritorio */
+    font-size: var(--app-fontsize-base, 1rem);
+  }
+}

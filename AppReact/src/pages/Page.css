@@ -1,0 +1,165 @@
+¡Claro! Aquí tienes el archivo page.css refactorizado, listo para copiar y pegar.
+
+Este código aplica el enfoque "mobile-first", usa unidades rem (idealmente referenciando variables de variables.css), utiliza las variables --padding-* para ion-content, incluye los estilos de #container que estaban en tu page.css original (también refactorizados), y añade breakpoints para tablet y escritorio. También incluye los ajustes responsivos para la clase .table que estaban en variables.css, asumiendo que dichas tablas pueden aparecer en páginas estilizadas por este archivo.
+
+Archivo: src/pages/Page.css (o CSS general de páginas)
+
+CSS
+
+/* src/pages/Page.css (o similar) */
+
+/* === Estilos Base (Móvil < 600px) === */
+ion-page {
+  --background: var(--ion-color-light, #FFFFFF); /* Fondo blanco */
+}
+
+ion-header {
+  --background: var(--ion-color-primary, #00ABE4); /* Usa variable */
+  --color: var(--ion-color-primary-contrast, #FFFFFF); /* Usa variable */
+  text-align: center;
+}
+
+ion-title {
+  /* Usando variable --app-fontsize-medium (18px) */
+  font-size: var(--app-fontsize-medium, 1.125rem);
+  font-weight: 600;
+}
+
+ion-content {
+  --background: #F5F5F5; /* Gris claro para fondo */
+  /* Padding usando variables Ionic y las variables de app definidas en variables.css */
+  --padding-start: var(--app-padding-small, 10px);
+  --padding-end: var(--app-padding-small, 10px);
+  --padding-top: var(--app-padding-small, 10px);
+  --padding-bottom: var(--app-padding-small, 10px);
+}
+
+/* === Estilos para #container (Incluidos aquí como en tu original) === */
+#container {
+  text-align: center;
+  position: relative; /* Mantenemos este método de centrado */
+  top: 50%;
+  transform: translateY(-50%);
+  /* Nota: Este centrado depende del contexto del padre. */
+  /* Si no funciona bien, considera usar Flexbox o Ionic Grid. */
+  padding: var(--app-padding-small, 10px); /* Padding base pequeño */
+}
+
+#container strong {
+  /* Usando variable --app-fontsize-medium (18px) */
+  font-size: var(--app-fontsize-medium, 1.125rem);
+  color: var(--ion-color-primary, #00ABE4); /* Usa variable */
+  display: block;
+  margin-bottom: 5px;
+}
+
+#container p {
+  /* Usando variable --app-fontsize-small (14px) */
+  font-size: var(--app-fontsize-small, 0.875rem);
+  color: #333333; /* Gris oscuro */
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+#container a {
+  text-decoration: none;
+  color: var(--ion-color-primary, #00ABE4); /* Usa variable */
+  /* Usando variable --app-fontsize-small (14px) */
+  font-size: var(--app-fontsize-small, 0.875rem);
+}
+
+#container a:hover {
+  color: var(--ion-color-primary-shade, #0098cc); /* Usa variable */
+}
+
+/* === Ajustes responsivos para .table (si aplica a esta página) === */
+.table ion-row {
+  /* Usando variable --app-fontsize-small (14px) */
+  font-size: var(--app-fontsize-small, 0.875rem);
+  padding: 8px 5px; /* Menos padding en móvil */
+}
+
+
+/* === Estilos para Tablets (>= 601px) === */
+@media (min-width: 601px) {
+  ion-content {
+    /* Padding mediano para tablet */
+    --padding-start: var(--app-padding-medium, 15px);
+    --padding-end: var(--app-padding-medium, 15px);
+    --padding-top: var(--app-padding-medium, 15px);
+    --padding-bottom: var(--app-padding-medium, 15px);
+  }
+
+  ion-title {
+    /* Usando variable --app-fontsize-large (20px) */
+    font-size: var(--app-fontsize-large, 1.25rem);
+  }
+
+  /* --- Ajustes #container para Tablet --- */
+  #container {
+    padding: var(--app-padding-medium, 15px); /* Padding mediano */
+  }
+  #container strong {
+    /* Ligeramente más grande (~19px) */
+    font-size: calc(var(--app-fontsize-medium, 1.125rem) + 0.0625rem);
+    margin-bottom: 8px;
+  }
+  #container p {
+    /* Ligeramente más grande (~15px) */
+    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
+    margin-bottom: 12px;
+  }
+  #container a {
+    /* Ligeramente más grande (~15px) */
+    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
+  }
+
+  /* --- Ajustes .table para Tablet --- */
+  .table ion-row {
+    /* Ligeramente más grande (~15px) */
+    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
+    padding: 9px 5px;
+  }
+}
+
+/* === Estilos para Escritorio (>= 992px) === */
+@media (min-width: 992px) {
+  ion-content {
+    /* Padding largo para escritorio */
+    --padding-start: var(--app-padding-large, 20px);
+    --padding-end: var(--app-padding-large, 20px);
+    --padding-top: var(--app-padding-large, 20px);
+    --padding-bottom: var(--app-padding-large, 20px);
+  }
+
+  ion-title {
+    /* Usando variable --app-fontsize-xl (22px, original) */
+    font-size: var(--app-fontsize-xl, 1.375rem);
+  }
+
+  /* --- Ajustes #container para Escritorio --- */
+  #container {
+    padding: var(--app-padding-large, 20px); /* Padding original */
+  }
+  #container strong {
+    /* Usando variable --app-fontsize-large (20px, original) */
+    font-size: var(--app-fontsize-large, 1.25rem);
+    margin-bottom: 10px;
+  }
+  #container p {
+     /* Usando variable --app-fontsize-base (16px, original) */
+    font-size: var(--app-fontsize-base, 1rem);
+    margin-bottom: 15px;
+  }
+  #container a {
+    /* Usando variable --app-fontsize-base (16px) */
+    font-size: var(--app-fontsize-base, 1rem);
+  }
+
+  /* --- Ajustes .table para Escritorio --- */
+   .table ion-row {
+    /* Usando variable --app-fontsize-base (16px, original) */
+    font-size: var(--app-fontsize-base, 1rem);
+    padding: 10px 5px; /* Padding original */
+  }
+}
