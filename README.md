@@ -1,362 +1,321 @@
-# 🧩 Sistema de Gestión Full Stack con React, Ionic y Spring Boot — Despliegue Cloud y Mobile
+# 🧩 Sistema de Gestión Full Stack: React & Spring Boot
 
-Este proyecto es una aplicación **Full Stack profesional** desarrollada como parte de una **demo técnica de portafolio** para demostrar habilidades en desarrollo web, backend Java, integración de APIs REST, bases de datos remotas, despliegue en la nube y adaptación móvil.
+[![Repo GitHub](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Delnr91/GestionDeClientes)
+[![Estado del Proyecto](https://img.shields.io/badge/estado-demo_técnica-blueviolet)](https://github.com/Delnr91/GestionDeClientes)
+[![Licencia](https://img.shields.io/badge/licencia-MIT-green)](LICENSE)
 
-La aplicación permite realizar operaciones **CRUD** (Crear, Leer, Actualizar, Eliminar) sobre **Clientes, Empleados y Proveedores**, usando una arquitectura moderna que combina:
+Aplicación **Full Stack profesional** desarrollada como **demo técnica de portafolio**. Demuestra habilidades en desarrollo web (React + Tailwind), backend (Java + Spring Boot), integración de API REST, bases de datos remotas (MariaDB en Google Cloud) y despliegue en la nube (Docker).
 
-- 🔹 **Frontend**: React + Ionic (UI adaptable a escritorio y móvil)
-- 🔹 **Backend**: Spring Boot (Java 21) + JPA + MySQL/MariaDB
-- 🔹 **Base de datos local**: MySQL (XAMPP)
-- 🔹 **Base de datos remota**: MariaDB en instancia VM de Google Cloud (Linux)
-- 🔹 **Dockerización y despliegue remoto**: Backend empaquetado como WAR y ejecutado vía Docker en la nube
-- 🔹 **Android Studio**: Adaptación y ejecución de la app en entorno móvil real mediante emulador
+La aplicación gestiona operaciones **CRUD** (Crear, Leer, Actualizar, Eliminar) para **Clientes, Empleados y Proveedores**.
 
-El proyecto incluye:
-
-✅ Pruebas locales y remotas con Postman  
-✅ Comunicación entre frontend y backend mediante API REST  
-✅ Configuración de CORS, variables de entorno, túneles SSH y acceso seguro  
-✅ Visualización móvil adaptada y funcionamiento en Android Studio  
-✅ Conexión cloud usando Google Cloud Platform y configuración de puertos/firewall
-
-> 🎯 Este proyecto está diseñado no solo para ser funcional, sino también para demostrar un dominio **completo del ciclo de desarrollo, integración, pruebas y despliegue profesional**.
-
-
-## 🔧 Backend — API REST con Java 21 y Spring Boot
-
-El backend del proyecto está desarrollado con **Spring Boot 3.4.2**, utilizando **Java 21**, y expone una API REST completa para la gestión de entidades como **Clientes, Empleados y Proveedores**.
-
-### 🧱 Tecnologías usadas
-
-| Tecnología          | Uso principal                                  |
-|---------------------|-----------------------------------------------|
-| Java 21             | Lenguaje principal (OpenJDK Temurin)          |
-| Spring Boot         | Framework backend principal                   |
-| Spring Web          | Crear y exponer endpoints REST                |
-| Spring Data JPA     | Acceso a base de datos y ORM con Hibernate    |
-| Hibernate Validator | Validación de datos con Jakarta Bean Validation |
-| MySQL / MariaDB     | Motor de base de datos local/remoto           |
-| Maven               | Gestión de dependencias y empaquetado         |
-| Docker              | Empaquetado y despliegue del backend          |
+**Repositorio:** [https://github.com/Delnr91/GestionDeClientes](https://github.com/Delnr91/GestionDeClientes)
 
 ---
 
-### 📁 Estructura principal del backend
+## ✨ Características Principales
 
-
-La estructura del backend sigue una arquitectura limpia y modular:
-
-- **src/main/java/com/example/demo/**
-  - `config/` → Configuración general, incluyendo CORS
-  - `controller/` → Controladores REST como `CustomerController`
-  - `entities/` → Entidades: `Customer`, `Employee`, `Supplier`
-  - `repository/` → Interfaces JPA (extends `CrudRepository`)
-  - `services/` → Lógica de negocio y acceso a repositorios
-  - `DemoApplication.java` → Clase principal de arranque
-
+* **Interfaz Moderna:** Frontend adaptable a escritorio y móvil implementado con React + Tailwind.
+* **Backend Robusto:** API REST construida con Spring Boot y Java 21.
+* **Gestión de Datos:** Operaciones CRUD completas para múltiples entidades.
+* **Base de Datos Flexible:** Soporte para MySQL (local) y MariaDB (remota en Google Cloud).
+* **Despliegue Profesional:** Backend dockerizado y desplegado en Google Cloud Platform.
+* **Adaptación Móvil (Opcional):** Posibilidad de adaptar a móvil con Capacitor.
+* **Pruebas Integradas:** Verificación local y remota con Postman.
+* **Configuración Segura:** Manejo de CORS, variables de entorno y túneles SSH.
 
 ---
 
-### 📦 Empaquetado WAR + Docker
+## 🛠️ Tecnologías Utilizadas
 
-El backend se empaqueta como un archivo `.war` para facilitar su despliegue en contenedores Docker y entornos productivos.
+**Frontend**
 
-```bash
-./mvnw clean package -DskipTests
-```
-Esto genera el archivo:
+| Tecnología     | Descripción                                |
+| -------------- | ------------------------------------------ |
+| React          | Biblioteca principal para la UI            |
+| Tailwind CSS   | Framework CSS para estilos                 |
+| Vite           | Entorno de desarrollo y empaquetador       |
+| React Router v6| Sistema de navegación (Asumido/Necesario)  |
+| Lucide React   | Biblioteca de Iconos                       |
+| Capacitor      | Puente para desarrollo móvil nativo (Opcional) |
+| Android Studio | IDE para pruebas y compilación Android (Opcional) |
 
-```bash
-target/demo-0.0.1-SNAPSHOT.war
-```
----
+**Backend**
 
-### 🔐 CORS y Seguridad
+| Tecnología          | Descripción                                   |
+| ------------------- | --------------------------------------------- |
+| Java 21 (Temurin)   | Lenguaje de programación                      |
+| Spring Boot 3.x     | Framework principal para la API REST          |
+| Spring Web          | Creación de endpoints RESTful                 |
+| Spring Data JPA     | Acceso a datos y ORM (con Hibernate)          |
+| Hibernate Validator | Validación de datos (Jakarta Bean Validation) |
+| Maven               | Gestión de dependencias y construcción        |
+| Docker              | Contenerización para despliegue              |
 
-Para permitir que el frontend (en otro puerto/dominio) se comunique con la API, se implementó una configuración CORS:
+**Base de Datos**
 
-```bash
-@Configuration
-@EnableWebMvc
-public class CorsConfig {
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return registry -> registry.addMapping("/api/**")
-            .allowedOrigins("http://localhost:5173")
-            .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            .allowedHeaders("*");
-    }
-}
-```
+| Tecnología      | Uso                                         |
+| --------------- | ------------------------------------------- |
+| MySQL (XAMPP)   | Base de datos para desarrollo local         |
+| MariaDB (GCP)   | Base de datos remota en Google Cloud VM     |
+| MySQL Workbench | Cliente gráfico para gestión de BD (local/remota vía SSH) |
 
+**Despliegue y Otros**
 
-### ✅ Endpoints REST implementados
-
-| Método  | Ruta                    | Acción             |
-|---------|-------------------------|--------------------|
-| GET     | `/api/customers`        | Listar todos       |
-| GET     | `/api/customers/{id}`   | Obtener por ID     |
-| POST    | `/api/customers`        | Crear o actualizar |
-| DELETE  | `/api/customers/{id}`   | Eliminar           |
-
-
----
-
-## 🖥️ Frontend — React + Ionic + Vite + Android Studio
-
-El frontend está construido con **React**, usando el motor de desarrollo moderno **Vite**, junto con **Ionic Framework** para componentes visuales adaptables a escritorio y dispositivos móviles.
+| Tecnología           | Uso                                          |
+| -------------------- | -------------------------------------------- |
+| Google Cloud Platform| Hosting de VM Linux para BD y backend Docker |
+| Postman              | Pruebas de API REST                          |
+| Git & GitHub         | Control de versiones y repositorio           |
 
 ---
 
-### 🧰 Tecnologías usadas en el frontend
+## 🚀 Instalación y Ejecución Local
 
-| Tecnología     | Uso principal                                      |
-|----------------|----------------------------------------------------|
-| React          | Framework de UI                                    |
-| Ionic React    | Componentes UI móviles/responsivos                 |
-| TypeScript     | Tipado estático en el frontend                     |
-| React Router v6| Navegación por rutas                               |
-| Vite           | Bundler y servidor de desarrollo rápido            |
-| Android Studio | Simulación y pruebas móviles nativas               |
+Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local.
 
----
+### 📋 Prerrequisitos
 
-### 📁 Estructura general del frontend
+* **Java JDK 21** o superior ([Temurin recomendado](https://adoptium.net/))
+* **Maven** ([Incluido con Spring Boot o instalar por separado](https://maven.apache.org/))
+* **Node.js y npm** ([Descargar aquí](https://nodejs.org/))
+* **Git** ([Descargar aquí](https://git-scm.com/))
+* **XAMPP** (o un servidor MySQL local similar) ([Descargar aquí](https://www.apachefriends.org/))
+* **Docker** (Opcional, para probar el contenedor localmente) ([Descargar aquí](https://www.docker.com/))
+* **Android Studio** (Opcional, si se quiere probar la adaptación móvil con Capacitor) ([Descargar aquí](https://developer.android.com/studio))
 
-- `src/pages/customer/CustomerList.tsx` → Listado de clientes
-- `src/pages/customer/CustomerEdit.tsx` → Formulario para crear/editar
-- `src/components/Menu.tsx` → Menú lateral reutilizable
-- `src/pages/Page.tsx` → Página principal (dashboard/base)
-- `src/components/ExploreContainer.tsx` → Componente base inicial
-- `src/CustomerApi.ts` → Funciones para conectar con la API REST
-- `.env` / `.env.production` → Variables para `VITE_API_URL`
+### ⚙️ Configuración
 
----
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/Delnr91/GestionDeClientes.git](https://github.com/Delnr91/GestionDeClientes.git)
+    cd GestionDeClientes
+    ```
 
-### 🔌 Conexión con el backend usando `.env`
+2.  **Configurar Base de Datos Local (MySQL con XAMPP):**
+    * Inicia Apache y MySQL desde el panel de control de XAMPP.
+    * Abre `http://localhost/phpmyadmin` en tu navegador.
+    * Crea una nueva base de datos llamada `system`.
+    * Importa el archivo `system.sql` (ubicado en la raíz del proyecto o en una carpeta designada) en la base de datos `system` recién creada.
 
-El frontend usa variables de entorno para comunicarse con el backend según el entorno:
+3.  **Configurar Backend:**
+    * Navega a la carpeta del backend (ej. `cd backend`).
+    * Verifica/ajusta el archivo `src/main/resources/application.properties` para la conexión local:
+        ```properties
+        spring.datasource.url=jdbc:mysql://localhost:3306/system
+        spring.datasource.username=root # O tu usuario de MySQL
+        spring.datasource.password= # O tu contraseña de MySQL
+        # Asegúrate que el puerto 3306 es correcto para tu instalación de XAMPP/MySQL
+        ```
 
-```env
-# .env (modo desarrollo local)
-VITE_API_URL=http://localhost:8080/api/
+4.  **Configurar Frontend (React + Tailwind):**
+    * Navega a la carpeta del frontend (ej. `cd ../frontend`).
+    * Instala las dependencias:
+        ```bash
+        npm install
+        ```
+    * Crea un archivo `.env` en la raíz del frontend con la URL del backend local:
+        ```env
+        # frontend/.env
+        VITE_API_URL=http://localhost:8080/api/
+        ```
 
-# .env.production (despliegue)
-VITE_API_URL=/api/
-```
-Estas variables son usadas en CustomerApi.ts para construir dinámicamente las URLs:
+### ▶️ Ejecución
 
-```bash
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api/";
-```
----
-### 📱 Adaptación móvil y pruebas con Android Studio
+1.  **Ejecutar Backend (desde la carpeta `backend`):**
+    ```bash
+    ./mvnw spring-boot:run
+    # O si tienes Maven global: mvn spring-boot:run
+    ```
+    El backend estará disponible en `http://localhost:8080`.
 
-La aplicación fue ejecutada exitosamente en **Android Studio**, utilizando **Capacitor + Ionic** para validar el comportamiento en móviles reales y emuladores.
-
----
-
-### 🧪 Pruebas en Android Emulator
-
-- ✅ **UI completamente responsive** gracias a componentes de Ionic
-- ✅ Menú lateral (`Menu.tsx`) funciona como *drawer* colapsable en pantallas pequeñas
-- ✅ CRUD funcional desde el emulador
-- ✅ Pruebas realizadas usando navegador embebido del emulador
-
----
-
-### ⚙️ Configuración de entorno para Android Emulator
-
-Para que el emulador acceda correctamente al backend local, se configuró:
-
-```env
-# .env.development
-VITE_API_URL=http://10.0.2.2:8080/api/
-```
-⚠️ 10.0.2.2 es una IP especial que Android Emulator usa para redirigir a localhost de tu máquina host.
-
----
-### 🧱 Generar el build móvil con Ionic + Capacitor
-Sigue estos pasos desde la raíz del frontend para compilar y abrir en Android Studio:
-```bash
-# 1. Instalar Capacitor
-npm install @capacitor/core @capacitor/cli
-
-# 2. Inicializar Capacitor (solo una vez)
-npx cap init app-react com.tuempresa.appreact
-
-# 3. Generar el build de producción
-npm run build
-
-# 4. Sincronizar el build con Android (genera carpeta android/)
-npx cap add android
-npx cap sync android
-
-# 5. Abrir el proyecto directamente en Android Studio
-npx cap open android
-```
-⚙️ Esto abrirá automáticamente el proyecto nativo en Android Studio, listo para emular o compilar en un dispositivo físico.
+2.  **Ejecutar Frontend (desde la carpeta `frontend`):**
+    ```bash
+    npm run dev
+    ```
+    La aplicación frontend estará disponible en `http://localhost:5173` (o el puerto que indique Vite).
 
 ---
 
-## 🔗 Integración Local — Frontend + Backend
+## ☁️ Despliegue (Ejemplo con Google Cloud y Docker)
 
-Durante el desarrollo, el **frontend (React + Vite)** y el **backend (Spring Boot)** se ejecutaron en puertos separados y fueron conectados mediante:
+Este proyecto incluye configuración para desplegar el backend en una VM de Google Cloud usando Docker y conectar una base de datos MariaDB remota.
 
-- Variables de entorno `.env`
-- Configuración CORS en Spring Boot
-- API REST consumida con `fetch`
+### 📦 Backend (Docker)
 
----
+1.  **Empaquetar como WAR (desde la carpeta `backend`):**
+    ```bash
+    ./mvnw clean package -DskipTests
+    ```
+    Esto genera `target/demo-0.0.1-SNAPSHOT.war`.
 
-### 🔌 Comunicación entre servicios
+2.  **Construir Imagen Docker (desde la carpeta `backend`, donde está el `Dockerfile`):**
+    ```dockerfile
+    # backend/Dockerfile (Ejemplo)
+    FROM openjdk:21-jdk-alpine
+    MAINTAINER Daniel Núñez Rojas <danidev33@gmail.com>
 
-- **Frontend en Vite**: corre por defecto en `http://localhost:5173`
-- **Backend Spring Boot**: corre en `http://localhost:8080`
+    COPY target/demo-0.0.1-SNAPSHOT.war app.war
 
----
+    # Expone el puerto que usa Spring Boot (por defecto 8080)
+    EXPOSE 8080
 
-### 🧩 Configuración `.env` en el frontend
+    ENTRYPOINT ["java", "-jar", "/app.war"]
+    ```bash
+    docker build -t tu_imagen_backend .
+    ```
 
-```env
-# .env para desarrollo local
-VITE_API_URL=http://localhost:8080/api/
-```
-Esto se usa dinámicamente en CustomerApi.ts:
-```bash
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api/";
-```
----
+3.  **Subir y Ejecutar en Google Cloud VM:**
+    * Transfiere la imagen Docker a la VM (o constrúyela allí).
+    * Asegúrate que la VM tiene Docker instalado y el puerto `8080` abierto en el firewall de GCP.
+    * Configura el `application.properties` dentro del contenedor (o mediante variables de entorno de Docker) para apuntar a la IP de la VM de MariaDB:
+        ```properties
+        spring.datasource.url=jdbc:mysql://<IP_VM_MARIADB>:3306/system
+        spring.datasource.username=springuser # Usuario remoto creado en MariaDB
+        spring.datasource.password=yourpassword # Contraseña del usuario remoto
+        ```
+    * Ejecuta el contenedor en la VM:
+        ```bash
+        docker run -d -p 8080:8080 --name backend_app tu_imagen_backend
+        ```
 
-### 🧪 Flujo de pruebas en desarrollo
+### 🌐 Frontend
 
-1. **Levantar base de datos local con XAMPP (MySQL):**
+1.  **Construir para Producción (desde la carpeta `frontend`):**
+    * Crea/Asegúrate que el archivo `.env.production` (si existe) tiene la URL correcta de la API desplegada (ej. `VITE_API_URL=http://<IP_EXTERNA_VM_BACKEND>:8080/api/`).
+    * Ejecuta:
+        ```bash
+        npm run build
+        ```
+    * Esto genera los archivos estáticos en la carpeta `dist/`.
 
-   - Iniciar Apache y MySQL desde el panel de control de XAMPP.
-   - Acceder al navegador y abrir: [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
-   - Crear una base de datos llamada: `system`
-   - Crear manualmente las siguientes tablas:
-     - `customers`
-     - `employees`
-     - `suppliers`
-       
-   - Acceder a la base de datos importando el archivo `system.sql` directo a: [http://localhost/phpmyadmin](http://localhost/phpmyadmin) desde la carpeta dentro del proyecto.
-  
-    
+2.  **Desplegar Archivos Estáticos:**
+    * Sube el contenido de la carpeta `dist/` a un servicio de hosting estático (como Firebase Hosting, Netlify, Vercel, Google Cloud Storage, o incluso un servidor web como Nginx en la misma VM del backend).
 
-2. **Configurar conexión en `application.properties` del backend:**
+### 🗄️ Base de Datos Remota (MariaDB en Google Cloud VM)
 
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3306/system
-   spring.datasource.username=root
-   spring.datasource.password=
-   ```
-
-Ejecutar backend:
-```bash
-./mvnw spring-boot:run
-```
-Ejecutar frontend:
-```bash
-npm run dev 
-```
-Acceder a la app:
-```bash
-http://localhost:5173
-```
----
-### Base de datos remota en VM Google Cloud (MariaDB + SSH + Workbench)
-
-## 🌐 Base de datos remota — Google Cloud VM (MariaDB)
-
-Para pruebas remotas en producción, se configuró una **instancia de máquina virtual (VM)** en **Google Cloud Platform (GCP)**, con el sistema operativo **Linux (Debian/Ubuntu)** y el motor de base de datos **MariaDB**.
+* Crea una VM en Google Cloud (Debian/Ubuntu recomendado).
+* Instala `mariadb-server`.
+* Configura `mariadb` para aceptar conexiones remotas (editando `50-server.cnf` y cambiando `bind-address` a `0.0.0.0`).
+* Crea un usuario específico para la aplicación (`springuser`) con permisos adecuados desde cualquier host (`%`).
+* Abre el puerto `3306` en el firewall de GCP (¡Considera restringir la IP de origen por seguridad!).
+* Conéctate remotamente usando MySQL Workbench (preferiblemente vía túnel SSH para mayor seguridad).
+* Importa la estructura de la base de datos (`system.sql`) en MariaDB.
 
 ---
 
-### 🧰 Configuración de la instancia en Google Cloud
+## 📱 Ejecución en Android (Opcional con Capacitor)
 
-1. Ingresar a [https://console.cloud.google.com](https://console.cloud.google.com)
-2. Ir a **Compute Engine > Instancias de VM**
-3. Crear una nueva instancia con:
-   - Sistema operativo: Debian/Ubuntu
-   - IP externa estática (opcional para producción)
-   - Puertos abiertos: `22`, `3306`, `8080` (configurado en el **firewall**)
+Si deseas adaptar la versión React + Tailwind a móvil usando Capacitor:
 
-4. En la sección **Redes > Firewall**, habilitar:
-   - ✅ HTTP
-   - ✅ HTTPS
-   - Agregar **regla personalizada** para permitir conexiones en:
-     - `0.0.0.0/0` en el puerto `3306` (solo para pruebas)
-     - `8080` para exponer la API backend
+1.  **Instalar Capacitor (desde la carpeta `frontend`):**
+    ```bash
+    npm install @capacitor/core @capacitor/cli
+    npm install @capacitor/android
+    ```
+2.  **Inicializar Capacitor (si es la primera vez):**
+    ```bash
+    npx cap init [NombreApp] [com.tuempresa.app]
+    ```
+3.  **Añadir Plataforma Android:**
+    ```bash
+    npx cap add android
+    ```
+4.  **Construir el Frontend:**
+    ```bash
+    npm run build
+    ```
+5.  **Sincronizar Cambios:**
+    ```bash
+    npx cap sync android
+    ```
+    * **¡Importante!** Para que el emulador se conecte al backend local (`localhost:8080`), necesitas usar la IP especial `10.0.2.2`. Ajusta `VITE_API_URL` en tu `.env` (o `.env.development`) a `http://10.0.2.2:8080/api/` antes de hacer `npx cap sync`.
+6.  **Abrir en Android Studio:**
+    ```bash
+    npx cap open android
+    ```
+7.  **Ejecutar:**
+    * Dentro de Android Studio, selecciona un emulador o dispositivo físico y ejecuta la aplicación.
+
+---
+
+## 🗺️ Rutas Principales de la API (Backend)
+
+El backend expone los siguientes endpoints bajo el prefijo `/api`:
+
+| Método | Ruta                  | Descripción                      |
+| ------ | --------------------- | -------------------------------- |
+| `GET`  | `/customers`          | Obtener todos los clientes       |
+| `GET`  | `/customers/{id}`     | Obtener un cliente por ID        |
+| `POST` | `/customers`          | Crear o Actualizar un cliente    |
+| `DELETE`| `/customers/{id}`     | Eliminar un cliente por ID       |
+| `GET`  | `/employees`          | Obtener todos los empleados      |
+| `GET`  | `/employees/{id}`     | Obtener un empleado por ID       |
+| `POST` | `/employees`          | Crear o Actualizar un empleado   |
+| `DELETE`| `/employees/{id}`     | Eliminar un empleado por ID      |
+| `GET`  | `/suppliers`          | Obtener todos los proveedores    |
+| `GET`  | `/suppliers/{id}`     | Obtener un proveedor por ID      |
+| `POST` | `/suppliers`          | Crear o Actualizar un proveedor  |
+| `DELETE`| `/suppliers/{id}`     | Eliminar un proveedor por ID     |
+
+*(Consulta `CustomerController.java`, `EmployeeController.java`, `SupplierController.java` para detalles)*
 
 ---
 
-### 🛠️ Instalación de MariaDB en la VM
+## ⚠️ Advertencias y Errores Comunes
 
-Conectarse a la VM vía SSH desde la terminal de GCP o tu terminal local:
-
-```bash
-sudo apt update
-sudo apt install mariadb-server
-sudo systemctl start mariadb
-sudo mysql_secure_installation
-```
----
-### 🛡️ Habilitar conexión remota a MariaDB
-```bash
-sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-```
-
-### 🔽 Cambiar:
-```bash
-bind-address = 127.0.0.1
-```
-### 🔁 Por:
-```bash
-bind-address = 0.0.0.0
-```
----
-
-### 👤 Crear usuario remoto para conectar con Workbench
-
-Conectarse al cliente MariaDB:
-```bash
-sudo mysql -u root -p
-```
-Crear usuario y otorgar permisos:
-```bash
-CREATE USER 'springuser'@'%' IDENTIFIED BY 'yourpassword';
-GRANT ALL PRIVILEGES ON *.* TO 'springuser'@'%';
-FLUSH PRIVILEGES;
-```
----
-### 🔐 Conexión remota desde MySQL Workbench (usando túnel SSH)
-
-1. **Abrir Workbench > New Connection:**
-2. **Configurar:**
-   - Connection Name: GCP Database
-   - Hostname: `127.0.0.1`
-   - Port: `3306` (puerto local del túnel) 
-   - Username: springuser
-   - Passsword: contraseña configurada en el usuario de mariadb
-
-2. **Activar pestaña "SSH"**
-
-   - SSH Hostname: `tu-ip-externa:22`
-   - SSH Username: el mismo que en la VM
-   - SSH Key o Password: Según la configuracion de acceso
+* **Error CORS:** Si el frontend no puede conectar con el backend, verifica que:
+    * El backend se está ejecutando.
+    * La configuración CORS en `CorsConfig.java` (backend) permite el origen del frontend (`http://localhost:5173` para desarrollo local, o el dominio de producción).
+    * La `VITE_API_URL` en el archivo `.env` (o `.env.production`) del frontend es correcta.
+* **Conexión a Base de Datos:** Asegúrate que los datos de conexión (URL, usuario, contraseña) en `application.properties` (backend) son correctos para tu entorno (local o remoto). Verifica que el servidor de base de datos está activo y accesible.
+* **Android Emulator y `localhost`:** Recuerda usar `http://10.0.2.2:8080/api/` como `VITE_API_URL` cuando ejecutes el frontend desde el emulador de Android para conectar al backend que corre en tu máquina host.
+* **Permisos de Firewall (GCP):** Si despliegas en Google Cloud, asegúrate de que los puertos necesarios (`8080` para el backend, `3306` para MariaDB, `22` para SSH) están abiertos en las reglas de firewall de la VM.
+* **Warning `import.meta`:** Si ves un warning sobre `import.meta` no disponible en `es2015`, revisa la configuración `target` en `vite.config.js` y/o `tsconfig.json` para asegurarte de que sea moderna (ej. `esnext`).
 
 ---
-### 🌐 Probar conexión con backend
-Una vez conectado, configurar el `application.properties`:
 
-```bash
-spring.datasource.url=jdbc:mysql://<tu-ip-externa>:3306/system
-spring.datasource.username=springuser
-spring.datasource.password=yourpassword
+## 🤝 Cómo Contribuir
 
-```
+¡Las contribuciones son bienvenidas! Si deseas mejorar este proyecto, sigue estos pasos:
 
+1.  **Haz un Fork** del repositorio: [https://github.com/Delnr91/GestionDeClientes](https://github.com/Delnr91/GestionDeClientes)
+2.  **Crea una nueva Rama** para tu funcionalidad o corrección: `git checkout -b feature/nueva-funcionalidad` o `git checkout -b fix/correccion-bug`.
+3.  **Realiza tus Cambios** y haz commits descriptivos.
+4.  **Asegúrate** de que el código sigue las guías de estilo del proyecto (si existen) y que las pruebas (si existen) pasan.
+5.  **Haz Push** a tu rama: `git push origin feature/nueva-funcionalidad`.
+6.  **Abre un Pull Request** en el repositorio original, describiendo claramente tus cambios.
 
+---
 
+## 👨‍💻 Autor
 
+* **Nombre:** Daniel Núñez Rojas
+* **GitHub:** [@Delnr91](https://github.com/Delnr91)
+* **LinkedIn:** [Daniel Núñez Rojas](https://www.linkedin.com/in/delnr91)
+* **Correo:** [danidev33@gmail.com](mailto:danidev33@gmail.com)
+
+---
+
+## 📜 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+```text
+MIT License
+
+Copyright (c) 2025 Daniel Núñez Rojas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR
