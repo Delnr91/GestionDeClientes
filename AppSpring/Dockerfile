@@ -14,4 +14,4 @@ COPY target/demo-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
 
 # Comando para ejecutar el WAR
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "demo.jar"]
