@@ -31,6 +31,8 @@ COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar demo.jar
 # Expone el puerto de la aplicación
 EXPOSE 8080
 
+# Reemplaza el ENTRYPOINT de debug con este:
+    ENTRYPOINT ["java", "-jar", "demo.jar"]
 # Comando para ejecutar la aplicación (no necesita ENV PORT aquí, usa el default 8080)
 # NUEVO ENTRYPOINT CON DEBUG:
 # Imprime el contenido del application.properties DENTRO DEL JAR y luego ejecuta
@@ -39,4 +41,4 @@ EXPOSE 8080
 #ENTRYPOINT ["sh", "-c", "echo '--- Contents of application.properties inside JAR: ---' && cat /app/BOOT-INF/classes/application.properties && echo '--- Starting application ---' && java -jar demo.jar"]
 
 # NUEVO ENTRYPOINT CON DEBUG (Imprimir variables de entorno):
-    ENTRYPOINT ["sh", "-c", "echo '--- Environment Variables: ---'; printenv | sort; echo '--- Starting application ---'; java -jar demo.jar"]
+   # ENTRYPOINT ["sh", "-c", "echo '--- Environment Variables: ---'; printenv | sort; echo '--- Starting application ---'; java -jar demo.jar"]
