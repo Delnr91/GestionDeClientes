@@ -18,7 +18,7 @@ RUN mvn package -DskipTests
 
 # --- Etapa 2: Ejecución (Runtime Stage) ---
 # Usa una imagen ligera solo con JRE 21 Alpine (más pequeña)
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:21-jre
 
 # Establece el directorio de trabajo para la ejecución
 WORKDIR /app
