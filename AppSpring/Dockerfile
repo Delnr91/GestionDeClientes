@@ -1,17 +1,35 @@
-# Usa Java 21 oficial con JDK completo
-FROM eclipse-temurin:21-jdk-alpine
+# --- Etapa 1: Construcción (Build Stage) ---
+# Usa una imagen de Maven con JDK 21 (compatible con tu proyecto)
+FROM maven:3.9-eclipse-temurin-21 AS build
 
-# Información del mantenedor (opcional)
-LABEL maintainer="tuproyecto@example.com"
-
-# Establece un directorio de trabajo dentro del contenedor
+# Establece el directorio de trabajo para la construcción
 WORKDIR /app
 
-# Copia el WAR generado en el contenedor
-COPY target/demo-0.0.1-SNAPSHOT.jar demo.jar
+# Copia solo el pom.xml para descargar dependencias (aprovecha caché de Docker)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
 
-# Expone el puerto estándar de Spring Boot
+# Copia el resto del código fuente de tu backend
+COPY src ./src
+
+# Ejecuta el build de Maven para compilar y empaquetar el JAR, saltando tests
+# Esto creará el JAR dentro de /app/target/
+RUN mvn package -DskipTests
+
+# --- Etapa 2: Ejecución (Runtime Stage) ---
+# Usa una imagen ligera solo con JRE 21 Alpine (más pequeña)
+FROM eclipse-temurin:21-jre-alpine
+
+# Establece el directorio de trabajo para la ejecución
+WORKDIR /app
+
+# Copia ÚNICAMENTE el JAR construido desde la etapa 'build'
+# ¡¡¡IMPORTANTE!!! Asegúrate que 'demo-0.0.1-SNAPSHOT.jar' es el nombre correcto
+# generado por tu build de Maven en la carpeta 'target'.
+COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar demo.jar
+
+# Expone el puerto de la aplicación
 EXPOSE 8080
 
-# Comando para ejecutar el WAR
+# Comando para ejecutar la aplicación (no necesita ENV PORT aquí, usa el default 8080)
 ENTRYPOINT ["java", "-jar", "demo.jar"]
