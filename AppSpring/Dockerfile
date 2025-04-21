@@ -36,5 +36,7 @@ EXPOSE 8080
 # Imprime el contenido del application.properties DENTRO DEL JAR y luego ejecuta
 # NOTA: La ruta '/app/BOOT-INF/classes/application.properties' es común, pero si
 #       el comando 'cat' falla o no muestra nada, podríamos necesitar ajustarla.
-ENTRYPOINT ["sh", "-c", "echo '--- Contents of application.properties inside JAR: ---' && cat /app/BOOT-INF/classes/application.properties && echo '--- Starting application ---' && java -jar demo.jar"]
+#ENTRYPOINT ["sh", "-c", "echo '--- Contents of application.properties inside JAR: ---' && cat /app/BOOT-INF/classes/application.properties && echo '--- Starting application ---' && java -jar demo.jar"]
 
+# NUEVO ENTRYPOINT CON DEBUG (Imprimir variables de entorno):
+    ENTRYPOINT ["sh", "-c", "echo '--- Environment Variables: ---'; printenv | sort; echo '--- Starting application ---'; java -jar demo.jar"]
