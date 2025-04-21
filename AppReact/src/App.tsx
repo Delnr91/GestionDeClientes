@@ -1,8 +1,8 @@
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
-import { IonReactHashRouter, IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,11 +38,11 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactHashRouter>
-        <IonSplitPane contentId="main">
+      <IonSplitPane contentId="main" when="(min-width: 768px)">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/page" exact={true}>
-              <Redirect to="/" />
+            <Route path="/" exact={true}>
+              <Redirect to="/page/customers" />
             </Route>
           
             

@@ -1,7 +1,6 @@
 import Customer from "./Customer";
 
-// Define la URL base de la API, obteniéndola de las variables de entorno o usando un valor predeterminado.
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api/"; 
+// NO definimos API_URL aquí
 
 /**
  * Función asíncrona para obtener la lista de clientes desde la API.
@@ -9,42 +8,35 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api/";
  */
 export async function searchCustomers(): Promise<Customer[]> {
   try {
-    // Realiza una petición GET a la API para obtener todos los clientes.
-    const response = await fetch(`${API_URL}customers`, {
+    // USA RUTA RELATIVA: El navegador completará con el dominio actual
+    const response = await fetch('/api/customers', { // <-- CAMBIO AQUÍ
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
-    // Verifica si la respuesta de la API es exitosa (código de estado 2xx).
     if (!response.ok) throw new Error("Error al obtener los clientes");
-
-    // Parsea la respuesta JSON y la retorna.
     return await response.json();
   } catch (error) {
-    // Captura y registra cualquier error que ocurra durante la petición.
     console.error(error);
-    // Retorna un array vacío en caso de error para evitar que la aplicación falle.
     return [];
   }
 }
 
 /**
  * Función asíncrona para eliminar un cliente por su ID.
- * @param {string} id El ID del cliente a eliminar.
+ * @param {number} id El ID del cliente a eliminar. // Corregido a number si tu API espera number
  * @returns {Promise<void>} Una promesa que resuelve cuando el cliente ha sido eliminado.
  */
 export async function removeCustomer(id: number): Promise<void> {
   try {
-    // Realiza una petición DELETE a la API para eliminar el cliente con el ID especificado.
-    const response = await fetch(`${API_URL}customers/${id}`, {
+    // USA RUTA RELATIVA:
+    const response = await fetch(`/api/customers/${id}`, { // <-- CAMBIO AQUÍ
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
 
-    // Verifica si la respuesta de la API es exitosa.
     if (!response.ok) throw new Error("Error al eliminar el cliente");
   } catch (error) {
-    // Captura y registra cualquier error que ocurra durante la petición.
     console.error(error);
   }
 }
@@ -56,17 +48,15 @@ export async function removeCustomer(id: number): Promise<void> {
  */
 export async function saveCustomer(customer: Customer): Promise<void> {
   try {
-    // Realiza una petición POST a la API para guardar el cliente.
-    const response = await fetch(`${API_URL}customers`, {
+    // USA RUTA RELATIVA:
+    const response = await fetch('/api/customers', { // <-- CAMBIO AQUÍ
       method: "POST",
-      body: JSON.stringify(customer), // Convierte el objeto Customer a JSON.
+      body: JSON.stringify(customer),
       headers: { "Content-Type": "application/json" },
     });
 
-    // Verifica si la respuesta de la API es exitosa.
     if (!response.ok) throw new Error("Error al guardar el cliente");
   } catch (error) {
-    // Captura y registra cualquier error que ocurra durante la petición.
     console.error(error);
   }
 }
@@ -78,30 +68,22 @@ export async function saveCustomer(customer: Customer): Promise<void> {
  */
 export async function searchCustomerById(id: number): Promise<Customer | null> {
   try {
-    // Realiza una petición GET a la API para obtener el cliente con el ID especificado.
-    const response = await fetch(`${API_URL}customers/${id}`, {
+    // USA RUTA RELATIVA:
+    const response = await fetch(`/api/customers/${id}`, { // <-- CAMBIO AQUÍ
       method: "GET",
       headers: { "Content-Type": "application/json" },
     });
 
-    // Verifica si la respuesta de la API es exitosa.
     if (!response.ok) {
-      // Maneja el caso específico de "no encontrado" (código de estado 404).
       if (response.status === 404) {
         console.warn(`Cliente con ID ${id} no encontrado.`);
-        // Retorna null en lugar de generar un error para indicar que el cliente no existe.
-        return null; 
+        return null;
       }
-      // Lanza un error genérico para otros códigos de estado no exitosos.
       throw new Error(`Error HTTP: ${response.status}`);
     }
-
-    // Parsea la respuesta JSON y la retorna.
     return await response.json();
   } catch (error) {
-    // Captura y registra cualquier error que ocurra durante la petición.
     console.error("Error al obtener el cliente:", error);
-    // Retorna null en caso de error para evitar que la aplicación falle.
     return null;
   }
 }

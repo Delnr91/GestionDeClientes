@@ -83,74 +83,78 @@ const CustomerEdit: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        
+        <IonCard >
+          <IonTitle style={{ padding: '10px 16px' }}> {/* Padding opcional */}
+            {id === "new" ? "Agregar Cliente" : "Editar Cliente"}
+          </IonTitle>
+        </IonCard>        
         <IonCard>
-          <IonTitle>{id === "new" ? "Agregar Cliente" : "Editar Cliente"}</IonTitle>
-
-        <IonRow>
 
           <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="stacked">Nombre</IonLabel>
-                <IonInput 
-                  onIonChange={(e) => setCustomer({ ...customer, firstname: String(e.detail.value) })} 
-                  value={customer.firstname || ""} 
-                />
-              </IonItem>
-            </IonCol>
+
+            <IonRow>
+              <IonCol>
+                <IonItem>
+                  <IonLabel position="stacked">Nombre</IonLabel>
+                  <IonInput
+                    onIonChange={(e) => setCustomer({ ...customer, firstname: String(e.detail.value) })}
+                    value={customer.firstname || ""}
+                  />
+                </IonItem>
+              </IonCol>
+            
+
+            
+              <IonCol>
+                <IonItem>
+                  <IonLabel position="stacked">Apellido</IonLabel>
+                  <IonInput
+                    onIonChange={(e) => setCustomer({ ...customer, lastname: String(e.detail.value) })}
+                    value={customer.lastname || ""}
+                  />
+                </IonItem>
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol>
+                <IonItem>
+                  <IonLabel position="stacked">Email</IonLabel>
+                  <IonInput
+                    onIonChange={(e) => setCustomer({ ...customer, email: String(e.detail.value) })}
+                    value={customer.email || ""}
+                  />
+                </IonItem>
+              </IonCol>
+            
+
+            
+              <IonCol>
+                <IonItem>
+                  <IonLabel position="stacked">Dirección</IonLabel>
+                  <IonInput
+                    onIonChange={(e) => setCustomer({ ...customer, address: String(e.detail.value) })}
+                    value={customer.address || ""}
+                  />
+                </IonItem>
+              </IonCol>
+            </IonRow>
+
+            <IonRow>
+              <IonCol>
+                <IonItem>
+                  <IonLabel position="stacked">Teléfono</IonLabel>
+                  <IonInput
+                    onIonChange={(e) => setCustomer({ ...customer, phone: String(e.detail.value) })}
+                    value={customer.phone || ""}
+                  />
+                </IonItem>
+              </IonCol>
+            </IonRow>
+
           </IonRow>
 
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="stacked">Apellido</IonLabel>
-                <IonInput 
-                  onIonChange={(e) => setCustomer({ ...customer, lastname: String(e.detail.value) })} 
-                  value={customer.lastname || ""} 
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
-
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="stacked">Email</IonLabel>
-                <IonInput 
-                  onIonChange={(e) => setCustomer({ ...customer, email: String(e.detail.value) })} 
-                  value={customer.email || ""} 
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
-
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="stacked">Dirección</IonLabel>
-                <IonInput 
-                  onIonChange={(e) => setCustomer({ ...customer, address: String(e.detail.value) })} 
-                  value={customer.address || ""} 
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
-          
-          <IonRow>
-            <IonCol>
-              <IonItem>
-                <IonLabel position="stacked">Teléfono</IonLabel>
-                <IonInput 
-                  onIonChange={(e) => setCustomer({ ...customer, phone: String(e.detail.value) })} 
-                  value={customer.phone || ""} 
-                />
-              </IonItem>
-            </IonCol>
-          </IonRow>
-
-         </IonRow>
-          
           <IonItem>
             <IonButton onClick={save} color="success" fill="solid" slot="end" size="default">
               <IonIcon icon={checkmark} />

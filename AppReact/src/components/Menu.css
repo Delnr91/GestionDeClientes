@@ -1,8 +1,4 @@
-/* === Estilos Base (Móvil < 600px) === */
-ion-menu {
-  /* Ancho base para móvil, tomado de tu media query original */
-  --width: 200px;
-}
+
 
 ion-menu ion-content {
   /* Fondo blanco para el contenido del menú */
@@ -14,16 +10,16 @@ ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;
   /* Padding vertical reducido para móvil */
-  --padding-top: 10px;
-  --padding-bottom: 10px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
 }
 
 ion-menu.md ion-list {
-  padding: 10px 0; /* Padding vertical reducido */
+  padding: 20px 0; /* Padding vertical reducido */
 }
 
 ion-menu.md ion-note {
-  margin-bottom: 20px; /* Margen reducido */
+  margin-bottom: 30px; /* Margen reducido */
   /* Usando variable de color medium si está definida */
   color: var(--ion-color-medium-shade, #808289);
   padding-left: 10px;
@@ -42,7 +38,7 @@ ion-menu.md ion-list#inbox-list {
 
 ion-menu.md ion-list#inbox-list ion-list-header {
   /* Usando variable de fuente large o fallback (~20px) */
-  font-size: var(--app-fontsize-large, 1.25rem);
+  font-size: 22px;
   font-weight: 600;
   min-height: 20px;
   color: #000000;
@@ -50,18 +46,17 @@ ion-menu.md ion-list#inbox-list ion-list-header {
 
 ion-menu.md ion-list#labels-list ion-list-header {
   /* Usando variable de fuente ~15px */
-  font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
-  margin-bottom: 15px; /* Margen reducido */
+  font-size: 16px;  
+  margin-bottom: 18px; /* Margen reducido */
   color: #000000;
-  min-height: 24px;
+  min-height: 26px;
 }
 
 ion-menu.md ion-item {
   --padding-start: 10px;
   --padding-end: 10px;
   border-radius: 4px;
-  /* Usando variable de fuente small (14px) para móvil */
-  font-size: var(--app-fontsize-small, 0.875rem);
+  
 }
 
 ion-menu.md ion-item.selected {
@@ -86,29 +81,28 @@ ion-menu.md ion-item ion-label {
 
 /* --- iOS - Estilos Base (Móvil) --- */
 ion-menu.ios ion-content {
-  --padding-bottom: 15px; /* Ligeramente reducido */
+  --padding-bottom: 20px ; /* Ligeramente reducido */
 }
 
 ion-menu.ios ion-list {
-  padding: 15px 0 0 0;
+  padding: 20px 0 0 0;
 }
 
 ion-menu.ios ion-note {
-  line-height: 1.4; /* Ajustado para legibilidad */
-  margin-bottom: 15px;
-  /* Usando variable de fuente base o fallback */
-  font-size: var(--app-fontsize-base, 1rem);
+  line-height: 24px; /* Ajustado para legibilidad */
+  margin-bottom: 20px;
+  
 }
 
 ion-menu.ios ion-item {
-  --padding-start: 14px; /* Ligeramente reducido */
-  --padding-end: 14px;
-  --min-height: 48px; /* Ligeramente reducido */
+  --padding-start: 16px; /* Ligeramente reducido */
+  --padding-end: 16px;
+  --min-height: 50px; /* Ligeramente reducido */
 }
 
 ion-menu.ios ion-item ion-icon {
   /* Tamaño de ícono reducido para móvil (~22px) */
-  font-size: calc(var(--app-fontsize-xl, 1.375rem) - 0.075rem);
+  font-size: 24px;
   color: #888888;
 }
 
@@ -121,13 +115,26 @@ ion-menu.ios ion-list#labels-list ion-list-header {
   margin-bottom: 8px;
 }
 
-/* --- Estilos Comunes (Móvil y superior) --- */
-ion-list-header {
-  display: flex;
-  align-items: center;
-  /* Considera un padding específico en lugar de 'auto' */
-  padding: 5px 0;
+ion-menu.ios ion-list-header,
+ion-menu.ios ion-note {
+  padding-left: 16px;
+  padding-right: 16px;
 }
+
+ion-menu.ios ion-note {
+  margin-bottom: 8px;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
+}
+
+ion-item.selected {
+  --color: var(--ion-color-primary);
+} 
+
 
 ion-list-header ion-img {
   width: auto; /* O un tamaño fijo pequeño */
@@ -138,95 +145,4 @@ ion-list-header ion-img {
 
 ion-list#inbox-list {
   padding-top: 15px; /* Ligeramente reducido */
-}
-
-
-/* === Estilos para Tablets (>= 601px) === */
-@media (min-width: 601px) {
-  ion-menu {
-    --width: 230px; /* Ancho intermedio para tablet */
-  }
-
-  /* --- Ajustes MD para Tablet --- */
-  ion-menu.md ion-list#inbox-list ion-list-header {
-    /* Tamaño intermedio (~21px) */
-    font-size: calc(var(--app-fontsize-large, 1.25rem) + 0.0625rem);
-  }
-  ion-menu.md ion-list#labels-list ion-list-header {
-    /* Usando variable base (16px) */
-    font-size: var(--app-fontsize-base, 1rem);
-  }
-  ion-menu.md ion-item {
-    /* Tamaño intermedio (~15px) */
-    font-size: calc(var(--app-fontsize-small, 0.875rem) + 0.0625rem);
-  }
-  ion-menu.md ion-item ion-icon {
-     /* Tamaño intermedio (~22px) */
-    font-size: calc(var(--app-fontsize-large, 1.25rem) + 0.125rem);
-  }
-
-  /* --- Ajustes iOS para Tablet --- */
-  ion-menu.ios ion-item ion-icon {
-    /* Restaurando tamaño original de ícono iOS (24px) */
-    font-size: var(--app-fontsize-xl, 1.375rem) + 0.125rem; /* ~1.5rem */
-  }
-}
-
-/* === Estilos para Escritorio (>= 992px) === */
-@media (min-width: 992px) {
-  ion-menu {
-    --width: 250px; /* Ancho original para escritorio */
-  }
-
-  /* --- Ajustes MD para Escritorio (Restaurar valores originales) --- */
-  ion-menu.md ion-content {
-    --padding-top: 20px; /* Original */
-    --padding-bottom: 20px; /* Original */
-  }
-  ion-menu.md ion-list {
-    padding: 20px 0; /* Original */
-  }
-  ion-menu.md ion-note {
-    margin-bottom: 30px; /* Original */
-  }
-  ion-menu.md ion-list#inbox-list ion-list-header {
-    /* Usando variable XL (22px) */
-    font-size: var(--app-fontsize-xl, 1.375rem);
-  }
-  ion-menu.md ion-list#labels-list ion-list-header {
-    font-size: var(--app-fontsize-base, 1rem); /* 16px (Original) */
-    margin-bottom: 18px; /* Original */
-    min-height: 26px; /* Original */
-  }
-  ion-menu.md ion-item {
-    /* Usando variable base (16px) para escritorio */
-    font-size: var(--app-fontsize-base, 1rem);
-  }
-  ion-menu.md ion-item ion-icon {
-    /* Usando tamaño ~24px para escritorio */
-    font-size: var(--app-fontsize-xl, 1.375rem) + 0.125rem; /* ~1.5rem */
-  }
-
-  /* --- Ajustes iOS para Escritorio (Restaurar valores originales) --- */
-  ion-menu.ios ion-content {
-    --padding-bottom: 20px; /* Original */
-  }
-  ion-menu.ios ion-list {
-    padding: 20px 0 0 0; /* Original */
-  }
-  ion-menu.ios ion-note {
-    line-height: 1.5; /* Original 24px / 16px base */
-    margin-bottom: 20px; /* Original */
-  }
-  ion-menu.ios ion-item {
-    --padding-start: 16px; /* Original */
-    --padding-end: 16px;
-    --min-height: 50px; /* Original */
-  }
-  /* El tamaño del ícono iOS ya se restauró en tablet */
-
-  /* --- Ajustes Comunes para Escritorio --- */
-   ion-list#inbox-list {
-     padding-top: 20px; /* Original */
-   }
 }

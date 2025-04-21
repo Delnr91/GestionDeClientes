@@ -94,8 +94,11 @@ const SupplierList: React.FC = () => {
                 {/*Contenido proveedores - ion grid (basic usage)*/}
 
                 <IonCard>
-                    <IonTitle> Gestión de Proveedores</IonTitle>
-
+                    <IonTitle style={{ padding: '10px 16px' }}>
+                        Gestión de Clientes
+                    </IonTitle>
+                </IonCard>
+                <IonCard>
                     <IonItem>
                         <IonButton
                             onClick={addSupplier}

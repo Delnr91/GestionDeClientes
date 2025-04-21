@@ -1,5 +1,6 @@
 import { IonButton, IonButtons, IonCard, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonMenuButton, IonPage, IonRow, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import { add, close, pencil } from "ionicons/icons";
+
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import Customer from "./Customer";
@@ -16,6 +17,7 @@ const CustomerList: React.FC = () => {
   const [clientes, setClientes] = useState<Customer[]>([]);
   // Hook para manejar la navegación entre rutas.
   const history = useHistory();
+
 
   /**
    * Efecto secundario que se ejecuta al montar el componente y cada vez que cambia la ruta.
@@ -91,11 +93,13 @@ const CustomerList: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        {/*Contenido empleados - ion grid (basic usage)*/}
+        <IonCard>
+          <IonTitle style={{ padding: '10px 16px' }}>
+            Gestión de Clientes
+          </IonTitle>
+        </IonCard>
 
         <IonCard>
-          <IonTitle>Gestión de Clientes</IonTitle>
-
           <IonItem>
             <IonButton
               onClick={addCustomer}
@@ -152,6 +156,7 @@ const CustomerList: React.FC = () => {
           </IonGrid>
         </IonCard>
       </IonContent>
+
     </IonPage>
   );
 };

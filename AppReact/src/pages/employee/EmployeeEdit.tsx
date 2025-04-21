@@ -84,10 +84,14 @@ const EmployeeEdit: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
 
-                <IonContent>
+                
+                     <IonCard >
+                              <IonTitle style={{ padding: '10px 16px' }}> {/* Padding opcional */}
+                              {id === 'new' ? 'Agregar Empleado' : 'Editar Empleado'}
+                              </IonTitle>
+                            </IonCard>        
                     <IonCard>
-                        <IonTitle>{id === 'new' ? 'Agregar Empleado' : 'Editar Empleado'}</IonTitle>
-
+                        
                         <IonRow>
                             <IonRow>
                                 <IonCol>
@@ -171,7 +175,7 @@ const EmployeeEdit: React.FC = () => {
                         </IonItem>
                     </IonCard>
                 </IonContent>
-            </IonContent>
+           
         </IonPage>
     );
 };

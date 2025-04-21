@@ -92,9 +92,12 @@ const EmployeeList: React.FC = () => {
                 </IonHeader>
 
                 {/*Contenido empleados - ion grid (basic usage)*/}
-
                 <IonCard>
-                    <IonTitle>Gestión de Empleados</IonTitle>
+                    <IonTitle style={{ padding: '10px 16px' }}>
+                        Gestión de Empleados
+                    </IonTitle>
+                </IonCard>
+                <IonCard>
 
                     <IonItem>
                         <IonButton
@@ -142,7 +145,7 @@ const EmployeeList: React.FC = () => {
                             ))
                         ) : (
 
-                             // Se muestra un mensaje si no hay empleados registrados.  
+                            // Se muestra un mensaje si no hay empleados registrados.  
                             <IonRow>
                                 <IonCol size="12" className="ion-text-center">
                                     No hay empleados registrados.

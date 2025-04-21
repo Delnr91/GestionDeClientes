@@ -8,10 +8,10 @@ LABEL maintainer="tuproyecto@example.com"
 WORKDIR /app
 
 # Copia el WAR generado en el contenedor
-COPY target/demo-0.0.1-SNAPSHOT.war demo.war
+COPY target/demo-0.0.1-SNAPSHOT.jar demo.jar
 
 # Expone el puerto estándar de Spring Boot
 EXPOSE 8080
 
 # Comando para ejecutar el WAR
-ENTRYPOINT ["java", "-jar", "/demo.war"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

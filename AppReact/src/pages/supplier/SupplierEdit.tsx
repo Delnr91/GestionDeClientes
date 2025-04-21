@@ -10,61 +10,61 @@ import { saveSupplier, searchSupplierById } from "./SupplierApi";
  * Componente para editar o agregar un proveedor.
  */
 const SupplierEdit: React.FC = () => {
-  // Obtiene el nombre del parámetro de la URL.
-  const { name } = useParams<{ name: string }>();
-  // Estado para almacenar el objeto Supplier que se está editando o creando.
-  const [supplier, setSupplier] = useState<Supplier>({} as Supplier);
-  // Hook para manejar la navegación entre rutas.
-  const history = useHistory();
-  // Hook para obtener información sobre la ruta actual.
-  const routeMatch = useRouteMatch<{ id: string }>("/page/supplier/:id");
-  // Obtiene el ID del proveedor de la ruta. Si es "new", se está creando un nuevo proveedor.
-  const id = routeMatch?.params?.id;
+    // Obtiene el nombre del parámetro de la URL.
+    const { name } = useParams<{ name: string }>();
+    // Estado para almacenar el objeto Supplier que se está editando o creando.
+    const [supplier, setSupplier] = useState<Supplier>({} as Supplier);
+    // Hook para manejar la navegación entre rutas.
+    const history = useHistory();
+    // Hook para obtener información sobre la ruta actual.
+    const routeMatch = useRouteMatch<{ id: string }>("/page/supplier/:id");
+    // Obtiene el ID del proveedor de la ruta. Si es "new", se está creando un nuevo proveedor.
+    const id = routeMatch?.params?.id;
 
-  /**
-   * Efecto secundario que se ejecuta cuando el ID cambia.
-   * Llama a la función search para cargar los datos del proveedor.
-   */
-  useEffect(() => {
-    search();
-  }, [id]);
+    /**
+     * Efecto secundario que se ejecuta cuando el ID cambia.
+     * Llama a la función search para cargar los datos del proveedor.
+     */
+    useEffect(() => {
+        search();
+    }, [id]);
 
-  /**
-   * Función asíncrona para buscar y cargar los datos del proveedor.
-   * Si el ID es "new", inicializa el estado con un objeto Supplier vacío.
-   * Si el ID es un número, llama a la API para obtener el proveedor por su ID.
-   */
-  const search = async () => {
-    if (id === "new") {
-      setSupplier({} as Supplier);
-    } else {
-      try {
-        // Convierte el ID a número y llama a la API para obtener el proveedor.
-        const result = await searchSupplierById(Number(id) || 0);
-        // Si se encuentra el proveedor, actualiza el estado.
-        if (result) setSupplier(result);
-      } catch (error) {
-        // Maneja cualquier error que ocurra durante la búsqueda.
-        console.error("Error al cargar proveedor:", error);
-      }
-    }
-  };
+    /**
+     * Función asíncrona para buscar y cargar los datos del proveedor.
+     * Si el ID es "new", inicializa el estado con un objeto Supplier vacío.
+     * Si el ID es un número, llama a la API para obtener el proveedor por su ID.
+     */
+    const search = async () => {
+        if (id === "new") {
+            setSupplier({} as Supplier);
+        } else {
+            try {
+                // Convierte el ID a número y llama a la API para obtener el proveedor.
+                const result = await searchSupplierById(Number(id) || 0);
+                // Si se encuentra el proveedor, actualiza el estado.
+                if (result) setSupplier(result);
+            } catch (error) {
+                // Maneja cualquier error que ocurra durante la búsqueda.
+                console.error("Error al cargar proveedor:", error);
+            }
+        }
+    };
 
-  /**
-   * Función asíncrona para guardar los datos del proveedor.
-   * Llama a la API para guardar el proveedor y luego navega a la lista de proveedors.
-   */
-  const save = async () => {
-    try {
-      // Llama a la API para guardar el proveedor.
-      await saveSupplier(supplier);
-      // Navega a la lista de proveedors.
-      history.push("/page/suppliers");
-    } catch (error) {
-      // Maneja cualquier error que ocurra durante el guardado.
-      console.error("Error al guardar proveedor:", error);
-    }
-  };
+    /**
+     * Función asíncrona para guardar los datos del proveedor.
+     * Llama a la API para guardar el proveedor y luego navega a la lista de proveedors.
+     */
+    const save = async () => {
+        try {
+            // Llama a la API para guardar el proveedor.
+            await saveSupplier(supplier);
+            // Navega a la lista de proveedors.
+            history.push("/page/suppliers");
+        } catch (error) {
+            // Maneja cualquier error que ocurra durante el guardado.
+            console.error("Error al guardar proveedor:", error);
+        }
+    };
 
     return (
         <IonPage>
@@ -84,9 +84,13 @@ const SupplierEdit: React.FC = () => {
                     </IonToolbar>
                 </IonHeader>
 
-                <IonContent>
+                    <IonCard >
+                        <IonTitle style={{ padding: '10px 16px' }}> {/* Padding opcional */}
+                            {id === 'new' ? 'Agregar Proveedor' : 'Editar Proveedor'}
+                        </IonTitle>
+                    </IonCard>
                     <IonCard>
-                        <IonTitle>{id === 'new' ? 'Agregar Proveedor' : 'Editar Proveedor'}</IonTitle>
+                        <IonTitle></IonTitle>
 
                         <IonRow>
                             <IonRow>
@@ -171,7 +175,7 @@ const SupplierEdit: React.FC = () => {
                         </IonItem>
                     </IonCard>
                 </IonContent>
-            </IonContent>
+           
         </IonPage>
     );
 };
